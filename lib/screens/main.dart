@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'network_screen.dart';
-import 'wifi_printer_screen.dart';
+import 'share_screen.dart';
 import 'tappay_screen.dart';
 
 void main() => runApp(MyApp());
@@ -15,7 +15,7 @@ class _MyAppState extends State<MyApp> {
 
   final tabs = [
     NetworkScreen(),
-    WifiPrinterScreen(),
+    ShareScreen(),
     TappayScreen(),
   ];
 
@@ -35,8 +35,8 @@ class _MyAppState extends State<MyApp> {
               backgroundColor: Colors.blueAccent,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.print),
-              title: Text('Wifi printer'),
+              icon: Icon(Icons.share),
+              title: Text('Share'),
               backgroundColor: Colors.greenAccent,
             ),
             BottomNavigationBarItem(
