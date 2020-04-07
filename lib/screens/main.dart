@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tungflutterframework/api_services/album.dart';
-import 'package:tungflutterframework/api_services/api_response_models/album_model.dart';
+import 'network_screen.dart';
+import 'wifi_printer_screen.dart';
+import 'tappay_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,22 +11,47 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Future<AlbumModel> album;
+  int _currentIndex = 0;
 
-  void getAlbum() {
-    album = Album().fetchAlbum();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getAlbum();
-  }
+  final tabs = [
+    NetworkScreen(),
+    WifiPrinterScreen(),
+    TappayScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return MaterialApp(
       color: Colors.white,
+      home: Scaffold(
+        body: tabs[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.shifting,
+          currentIndex: _currentIndex,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.network_check),
+              title: Text('Network'),
+              backgroundColor: Colors.blueAccent,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.print),
+              title: Text('Wifi printer'),
+              backgroundColor: Colors.greenAccent,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.monetization_on),
+              title: Text('Tappay'),
+              backgroundColor: Colors.redAccent,
+            ),
+          ],
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+        ),
+      ),
     );
   }
 }
