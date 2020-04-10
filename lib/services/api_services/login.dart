@@ -1,4 +1,4 @@
-import 'package:tungflutterframework/api_services/api_response_models/login_model.dart';
+import 'package:tungflutterframework/services/api_services/api_response_models/login_model.dart';
 import 'networking.dart';
 import 'package:tungflutterframework/constans.dart';
 

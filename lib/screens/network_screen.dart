@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tungflutterframework/api_services/api_response_models/login_model.dart';
-import 'package:tungflutterframework/api_services/login.dart';
+import 'package:tungflutterframework/services/api_services/login.dart';
+import 'package:tungflutterframework/services/api_services/api_response_models/login_model.dart';
 import 'package:tungflutterframework/widgets/network_demo.dart';
 
 class NetworkScreen extends StatefulWidget {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tungflutterframework/screens/phone_call_screen.dart';
+import 'package:tungflutterframework/screens/web_screen.dart';
 import 'network_screen.dart';
 import 'share_screen.dart';
 import 'tappay_screen.dart';
@@ -17,6 +19,8 @@ class _MyAppState extends State<MyApp> {
     NetworkScreen(),
     ShareScreen(),
     TappayScreen(),
+    WebScreen(),
+    PhoneCallScreen(),
   ];
 
   @override
@@ -43,6 +47,15 @@ class _MyAppState extends State<MyApp> {
               icon: Icon(Icons.monetization_on),
               title: Text('Tappay'),
               backgroundColor: Colors.redAccent,
+            ),BottomNavigationBarItem(
+              icon: Icon(Icons.web),
+              title: Text('Web'),
+              backgroundColor: Colors.deepPurpleAccent,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.phone),
+              title: Text('Phone call'),
+              backgroundColor: Colors.orangeAccent,
             ),
           ],
           onTap: (index) {
