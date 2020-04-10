@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tungflutterframework/services/launch_service.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class PhoneCallScreen extends StatelessWidget {
 
@@ -12,10 +13,10 @@ class PhoneCallScreen extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orangeAccent,
-          title: Text('Phone call'),
+          title: Text('phoneCall'.tr()),
         ),
         body: Center(
-          child: Text('Phone call screen'),
+          child: Text('phoneCall'.tr()),
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.phone),

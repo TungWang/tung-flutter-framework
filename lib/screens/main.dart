@@ -5,8 +5,16 @@ import 'package:tungflutterframework/screens/web_screen.dart';
 import 'network_screen.dart';
 import 'share_screen.dart';
 import 'tappay_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(EasyLocalization(
+    child: MyApp(),
+    supportedLocales: [Locale('en', 'US'), Locale('zh', 'TW')],
+    path: 'resources/langs',
+  ));
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -28,6 +36,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        EasyLocalization.of(context).delegate,
+      ],
       color: Colors.white,
       home: Scaffold(
         body: tabs[_currentIndex],
@@ -37,32 +50,33 @@ class _MyAppState extends State<MyApp> {
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.network_check),
-              title: Text('Network'),
+              title: Text('network'.tr()),
               backgroundColor: Colors.blueAccent,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.share),
-              title: Text('Share'),
+              title: Text('share'.tr()),
               backgroundColor: Colors.greenAccent,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.monetization_on),
-              title: Text('Tappay'),
+              title: Text('payment'.tr()),
               backgroundColor: Colors.redAccent,
-            ),BottomNavigationBarItem(
+            ),
+            BottomNavigationBarItem(
               icon: Icon(Icons.web),
-              title: Text('Web'),
+              title: Text('web'.tr()),
               backgroundColor: Colors.deepPurpleAccent,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.phone),
-              title: Text('Phone call'),
+              title: Text('phoneCall'.tr()),
               backgroundColor: Colors.orangeAccent,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.camera),
-              title: Text('Camera'),
-              backgroundColor: Colors.orangeAccent,
+              title: Text('camera'.tr()),
+              backgroundColor: Colors.tealAccent,
             ),
           ],
           onTap: (index) {

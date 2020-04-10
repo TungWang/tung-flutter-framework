@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:tungflutterframework/widgets/rounded_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ShareScreen extends StatefulWidget {
   @override
@@ -24,7 +25,7 @@ class _ShareScreenState extends State<ShareScreen> {
           resizeToAvoidBottomPadding: false,
           appBar: AppBar(
             backgroundColor: Colors.greenAccent,
-            title: Text('Share'),
+            title: Text('share'.tr()),
           ),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.0),

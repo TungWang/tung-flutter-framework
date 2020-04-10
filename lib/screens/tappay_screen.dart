@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:tappayflutter/tappayflutter.dart';
 import 'package:tappayflutterplugin/tappayflutterplugin.dart';
 import 'package:tungflutterframework/widgets/rounded_button.dart';
 import 'package:tungflutterframework/widgets/tappay_textfield.dart';

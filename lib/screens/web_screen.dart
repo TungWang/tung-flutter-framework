@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tungflutterframework/services/launch_service.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -20,7 +20,7 @@ class _WebScreenState extends State<WebScreen> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepPurpleAccent,
-          title: Text('Web'),
+          title: Text('web'.tr()),
         ),
         body: WebView(
           initialUrl: 'https://homego.azurewebsites.net/#/testlogin',

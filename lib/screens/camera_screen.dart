@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CameraScreen extends StatefulWidget {
   @override
@@ -8,7 +9,7 @@ class CameraScreen extends StatefulWidget {
 
 class _CameraScreenState extends State<CameraScreen> {
 
-  String _barcode = "Your barcode result.";
+  String _barcode = 'yourScanResult'.tr();
 
   Future scan() async {
     try {
@@ -26,8 +27,8 @@ class _CameraScreenState extends State<CameraScreen> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.orangeAccent,
-          title: Text('Camera'),
+          backgroundColor: Colors.tealAccent,
+          title: Text('camera'.tr()),
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -37,7 +38,7 @@ class _CameraScreenState extends State<CameraScreen> {
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.camera),
-          backgroundColor: Colors.orangeAccent,
+          backgroundColor: Colors.tealAccent,
           onPressed: () {
             scan();
           },

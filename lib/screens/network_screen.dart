@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tungflutterframework/services/api_services/login.dart';
 import 'package:tungflutterframework/services/api_services/api_response_models/login_model.dart';
 import 'package:tungflutterframework/widgets/network_demo.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class NetworkScreen extends StatefulWidget {
   @override
@@ -27,7 +28,7 @@ class _NetworkScreenState extends State<NetworkScreen> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blueAccent,
-          title: Text('Network'),
+          title: Text('network'.tr()),
         ),
         body: Container(
           child: Center(
