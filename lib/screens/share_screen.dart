@@ -20,7 +20,6 @@ class _ShareScreenState extends State<ShareScreen> {
         }
       },
       child: MaterialApp(
-        color: Colors.white,
         home: Scaffold(
           resizeToAvoidBottomPadding: false,
           appBar: AppBar(

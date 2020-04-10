@@ -46,5 +46,9 @@
 	<key>io.flutter.embedded_views_preview</key>
     <string>YES</string>
 
+
+    <key>NSCameraUsageDescription</key>
+        <string>Camera permission is required for barcode scanning.</string>
+
 </dict>
 </plist>

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: __local_aars__:./../../../../FlutterDeveloper/flutter/.pub-cache/hosted/pub.dartlang.org/tappayflutterplugin-0.0.3/android/libs/tpdirect.aar:unspecified@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/634287aaaaf4d0e127de9fad8172a8ba/jetified-tpdirect/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/634287aaaaf4d0e127de9fad8172a8ba/jetified-tpdirect/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

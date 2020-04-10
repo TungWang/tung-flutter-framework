@@ -24,7 +24,6 @@ class _NetworkScreenState extends State<NetworkScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      color: Colors.white,
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blueAccent,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tungflutterframework/screens/camera_screen.dart';
 import 'package:tungflutterframework/screens/phone_call_screen.dart';
 import 'package:tungflutterframework/screens/web_screen.dart';
 import 'network_screen.dart';
@@ -21,6 +22,7 @@ class _MyAppState extends State<MyApp> {
     TappayScreen(),
     WebScreen(),
     PhoneCallScreen(),
+    CameraScreen(),
   ];
 
   @override
@@ -55,6 +57,11 @@ class _MyAppState extends State<MyApp> {
             BottomNavigationBarItem(
               icon: Icon(Icons.phone),
               title: Text('Phone call'),
+              backgroundColor: Colors.orangeAccent,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.camera),
+              title: Text('Camera'),
               backgroundColor: Colors.orangeAccent,
             ),
           ],

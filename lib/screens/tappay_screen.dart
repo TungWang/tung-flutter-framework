@@ -19,7 +19,6 @@ class _TappayScreenState extends State<TappayScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      color: Colors.white,
       home: Scaffold(
         resizeToAvoidBottomPadding: false,
         appBar: AppBar(
