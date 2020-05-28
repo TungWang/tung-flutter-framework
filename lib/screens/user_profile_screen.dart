@@ -18,6 +18,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   bool _isLoading = true;
   Uint8List _imageData;
   UserModel _user = UserModel();
+  PageController _pageController = PageController(initialPage: 0, viewportFraction: 0.8);
 
   void _getProvider() {
     _loginProvider = Provider.of<LoginProvider>(context, listen: true);
@@ -51,6 +52,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   }
 
   @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     _getProvider();
     return ModalProgressHUD(
@@ -76,7 +83,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           alignment: Alignment.topCenter,
           children: <Widget>[
             Container(
-              height: 300.0,
+              height: 250.0,
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.only(
@@ -91,7 +98,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -135,23 +142,46 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       ],
                     ),
                   ),
-                  Container(
-                    height: 200.0,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 10,
-                      padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-                      itemBuilder: (context, index) {
-                        return Container(
-                          margin: EdgeInsets.only(right: 20.0),
+                  Stack(
+                    alignment: Alignment.centerRight,
+                    children: <Widget>[
+                      Container(
+                        height: 120.0,
+                        child: PageView.builder(
+                          controller: _pageController,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 10,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: EdgeInsets.only(right: 20.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: Colors.black,
+                              ),
+                              width: 300.0,
+                            );
+                          },
+                        ),
+                      ),
+                      Positioned(
+                        right: 20.0,
+                        child: Container(
+                          height: 30.0,
+                          width: 30.0,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.0),
-                            color: Colors.black,
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(40.0),
                           ),
-                          width: 300.0,
-                        );
-                      },
-                    ),
+                          child: IconButton(
+                            iconSize: 15.0,
+                            icon: Icon(Icons.arrow_forward_ios),
+                            onPressed: () {
+                              _pageController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.ease);
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -166,7 +196,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             child: Column(
                               children: <Widget>[
                                 IconButton(
-                                  icon: Icon(Icons.create), onPressed: () {},
+                                  icon: Icon(Icons.create),
+                                  onPressed: () {},
                                 ),
                                 Text('測試'),
                               ],
@@ -181,7 +212,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             child: Column(
                               children: <Widget>[
                                 IconButton(
-                                  icon: Icon(Icons.print), onPressed: () {},
+                                  icon: Icon(Icons.print),
+                                  onPressed: () {},
                                 ),
                                 Text('測試'),
                               ],
@@ -196,7 +228,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             child: Column(
                               children: <Widget>[
                                 IconButton(
-                                  icon: Icon(Icons.photo), onPressed: () {},
+                                  icon: Icon(Icons.photo),
+                                  onPressed: () {},
                                 ),
                                 Text('測試'),
                               ],
@@ -211,7 +244,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             child: Column(
                               children: <Widget>[
                                 IconButton(
-                                  icon: Icon(Icons.camera), onPressed: () {},
+                                  icon: Icon(Icons.camera),
+                                  onPressed: () {},
                                 ),
                                 Text('測試'),
                               ],
@@ -226,7 +260,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             child: Column(
                               children: <Widget>[
                                 IconButton(
-                                  icon: Icon(Icons.add), onPressed: () {},
+                                  icon: Icon(Icons.add),
+                                  onPressed: () {},
                                 ),
                                 Text('測試'),
                               ],
