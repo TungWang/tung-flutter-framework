@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:tungflutterframework/services/api_services/api_response_models/user_model.dart';
 import 'package:tungflutterframework/services/api_services/providers/image_data_provider.dart';
 import 'package:tungflutterframework/services/api_services/providers/login_provider.dart';
+import 'package:tungflutterframework/widgets/home_page_banner.dart';
+import 'package:tungflutterframework/widgets/message_card_view.dart';
 
 class UserProfileScreen extends StatefulWidget {
   @override
@@ -16,9 +18,29 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   LoginProvider _loginProvider;
   ImageDataProvider _imageDataProvider;
   bool _isLoading = true;
-  Uint8List _imageData;
+  Uint8List _userImageData;
+  Uint8List _spaceImageData;
   UserModel _user = UserModel();
-  PageController _pageController = PageController(initialPage: 0, viewportFraction: 0.8);
+  PageController _pageController =
+      PageController(initialPage: 0, viewportFraction: 0.8);
+  List<Widget> _messageCards = [
+    Container(
+      margin: EdgeInsets.only(right: 20.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        color: Colors.black,
+      ),
+      width: 300.0,
+    ),
+    Container(
+      margin: EdgeInsets.only(right: 20.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        color: Colors.black,
+      ),
+      width: 300.0,
+    ),
+  ];
 
   void _getProvider() {
     _loginProvider = Provider.of<LoginProvider>(context, listen: true);
@@ -31,15 +53,24 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         .then((_) {
       _isLoading = _loginProvider.isLoading();
       _user = _loginProvider.getUser();
-      _getImage(image: _loginProvider.getUser().theme.avatar);
+      _getUserImageData(image: _loginProvider.getUser().theme.avatar);
+      _getSpaceImageData(image: 'x6H7iKE2ykSnwv_3Y2P26Q');
     });
   }
 
-  void _getImage({String image}) {
+  void _getUserImageData({String image}) {
     var url =
         'https://spacesgoapi.azurewebsites.net/File/Download?fileGuid=%2B1_2_$image';
     _imageDataProvider.fetchImageData(url: url).then((_) {
-      _imageData = _imageDataProvider.getImageData();
+      _userImageData = _imageDataProvider.getImageData();
+    });
+  }
+
+  void _getSpaceImageData({String image}) {
+    var url =
+        'https://spacesgoapi.azurewebsites.net/File/Download?fileGuid=%2B2_2_$image';
+    _imageDataProvider.fetchImageData(url: url).then((_) {
+      _spaceImageData = _imageDataProvider.getImageData();
     });
   }
 
@@ -82,23 +113,21 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         body: Stack(
           alignment: Alignment.topCenter,
           children: <Widget>[
-            Container(
-              height: 250.0,
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(60.0),
-                  bottomRight: Radius.circular(60.0),
-                ),
-              ),
+            HomePageBanner(
+              height: 290.0,
+              imageData: _spaceImageData,
             ),
             SafeArea(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
+                  SizedBox(
+                    height: 40.0,
+                  ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -123,9 +152,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         ),
                         Container(
                           child: CircleAvatar(
-                            backgroundImage: _imageData == null
+                            backgroundImage: _userImageData == null
                                 ? null
-                                : MemoryImage(_imageData),
+                                : MemoryImage(_userImageData),
                           ),
                           height: 70,
                           width: 70,
@@ -142,46 +171,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       ],
                     ),
                   ),
-                  Stack(
-                    alignment: Alignment.centerRight,
-                    children: <Widget>[
-                      Container(
-                        height: 120.0,
-                        child: PageView.builder(
-                          controller: _pageController,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              margin: EdgeInsets.only(right: 20.0),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.0),
-                                color: Colors.black,
-                              ),
-                              width: 300.0,
-                            );
-                          },
-                        ),
-                      ),
-                      Positioned(
-                        right: 20.0,
-                        child: Container(
-                          height: 30.0,
-                          width: 30.0,
-                          decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(40.0),
-                          ),
-                          child: IconButton(
-                            iconSize: 15.0,
-                            icon: Icon(Icons.arrow_forward_ios),
-                            onPressed: () {
-                              _pageController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.ease);
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
+                  MessageCardView(
+                    pageController: _pageController,
+                    cards: _messageCards,
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20.0),
