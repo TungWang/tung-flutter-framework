@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:tungflutterframework/screens/user_profile_screen.dart';
@@ -7,11 +8,14 @@ import 'package:tungflutterframework/services/api_services/providers/image_data_
 import 'package:tungflutterframework/services/api_services/providers/login_provider.dart';
 
 void main() {
-  runApp(EasyLocalization(
-    child: MyApp(),
-    supportedLocales: [Locale('en', 'US'), Locale('zh', 'TW')],
-    path: 'resources/langs',
-  ));
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) {
+    runApp(EasyLocalization(
+      child: MyApp(),
+      supportedLocales: [Locale('en', 'US'), Locale('zh', 'TW')],
+      path: 'resources/langs',
+    ));
+  });
 }
 
 class MyApp extends StatefulWidget {
